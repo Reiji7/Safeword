@@ -50,9 +50,9 @@ public class View_Connect extends JFrame implements ActionListener{
 		add(lbl_DataBase);
 		
 		tfld_DataBase = new JTextField();
+		tfld_DataBase.setColumns(10);
 		tfld_DataBase.setBounds(12, 39, 359, 25);
 		add(tfld_DataBase);
-		tfld_DataBase.setColumns(10);
 		
 		butt_DataPath = new JButton("...");
 		butt_DataPath.setBounds(383, 39, 55, 25);

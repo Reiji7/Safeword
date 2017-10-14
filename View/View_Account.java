@@ -30,9 +30,9 @@ public class View_Account extends JFrame implements ActionListener{
 	private JTable tableau;
 	
 	private JPanel Liste;
-	private JPanel panel;
+	private JPanel pane_setting;
 	
-	private JTextField textField;
+	private JTextField tfld_search;
 	private JTextField tfld_Site;
 	private JTextField tfld_Login;
 	private JTextField tfld_Password;
@@ -48,7 +48,7 @@ public class View_Account extends JFrame implements ActionListener{
 	private JCheckBox chbx_SP;
 	private JCheckBox chbx_Dash;
 	
-	private JButton butt_recherche;
+	private JButton butt_search;
 	private JButton butt_Generate;
 	private JButton butt_Copy;
 	private JButton butt_Clear;
@@ -91,8 +91,6 @@ public class View_Account extends JFrame implements ActionListener{
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
             	
-            	System.out.println(tableau.getSelectedRow());
-            	
             	if(tableau.getSelectedRow() != -1) {
                 	controler.selectedRow(tableau.getSelectedRow());
             	}
@@ -108,113 +106,113 @@ public class View_Account extends JFrame implements ActionListener{
 	private void initialize(Object[][] data) {
 		this.setTitle("Safe-Word");
 		this.setResizable(false);
-		this.setBounds(100, 100, 800, 600);
+		this.setBounds(100, 100, 900, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		
 		Liste = new JPanel();
-		Liste.setBounds(0, 0, 627, 570);
+		Liste.setBounds(0, 0, 650, 570);
 		this.getContentPane().add(Liste);
 		Liste.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(12, 12, 489, 20);
-		Liste.add(textField);
-		textField.setColumns(10);
+		tfld_search = new JTextField();
+		tfld_search.setBounds(10, 20, 500, 25);
+		Liste.add(tfld_search);
+		tfld_search.setColumns(10);
 		
-		butt_recherche = new JButton("Recherche");
-		butt_recherche.setBounds(507, 10, 102, 23);
-		butt_recherche.addActionListener(this);
-		Liste.add(butt_recherche);
+		butt_search = new JButton("Recherche");
+		butt_search.setBounds(520, 20, 120, 25);
+		butt_search.addActionListener(this);
+		Liste.add(butt_search);
 		
 		initializeTable(data);
         
 		scrollPane = new JScrollPane(tableau);
-		scrollPane.setBounds(12, 43, 598, 515);
+		scrollPane.setBounds(10, 60, 630, 500);
 		Liste.add(scrollPane);
 
-		panel = new JPanel();
-		panel.setBounds(628, 0, 168, 570);
-		this.getContentPane().add(panel);
-		panel.setLayout(null);
+		pane_setting = new JPanel();
+		pane_setting.setBounds(650, 0, 250, 570);
+		this.getContentPane().add(pane_setting);
+		pane_setting.setLayout(null);
 		
 		lbl_Sites = new JLabel("Sites / Software");
-		lbl_Sites.setBounds(25, 40, 150, 15);
-		panel.add(lbl_Sites);
+		lbl_Sites.setBounds(40, 40, 150, 15);
+		pane_setting.add(lbl_Sites);
 		
 		tfld_Site = new JTextField();
-		tfld_Site.setBounds(10, 60, 145, 20);
-		panel.add(tfld_Site);
+		tfld_Site.setBounds(20, 60, 200, 20);
+		pane_setting.add(tfld_Site);
 		tfld_Site.setColumns(10);
 		
 		lbl_Login = new JLabel("Login");
-		lbl_Login.setBounds(25, 100, 110, 15);
-		panel.add(lbl_Login);
+		lbl_Login.setBounds(40, 100, 110, 15);
+		pane_setting.add(lbl_Login);
 		
 		tfld_Login = new JTextField();
 		tfld_Login.setColumns(10);
-		tfld_Login.setBounds(10, 120, 145, 20);
-		panel.add(tfld_Login);
+		tfld_Login.setBounds(20, 120, 200, 20);
+		pane_setting.add(tfld_Login);
 		
 		lbl_Password = new JLabel("Password");
-		lbl_Password.setBounds(25, 160, 110, 15);
-		panel.add(lbl_Password);
+		lbl_Password.setBounds(40, 160, 110, 15);
+		pane_setting.add(lbl_Password);
 		
 		tfld_Password = new JTextField();
 		tfld_Password.setColumns(10);
-		tfld_Password.setBounds(10, 180, 145, 20);
-		panel.add(tfld_Password);
+		tfld_Password.setBounds(20, 180, 200, 20);
+		pane_setting.add(tfld_Password);
 		
 		lbl_Size = new JLabel("Size : ");
-		lbl_Size.setBounds(25, 220, 110, 15);
-		panel.add(lbl_Size);
+		lbl_Size.setBounds(50, 220, 110, 15);
+		pane_setting.add(lbl_Size);
 		
 		tfld_Size = new JTextField();
 		tfld_Size.setColumns(2);
-		tfld_Size.setBounds(75, 220, 50, 20);
-		panel.add(tfld_Size);
+		tfld_Size.setBounds(100, 220, 50, 20);
+		pane_setting.add(tfld_Size);
 		
 		chbx_Maj = new JCheckBox("Majuscules");
-		chbx_Maj.setBounds(10, 250, 115, 25);
-		panel.add(chbx_Maj);
+		chbx_Maj.setBounds(25, 250, 200, 25);
+		pane_setting.add(chbx_Maj);
 		
 		chbx_Numbers = new JCheckBox("Chiffres      ");
-		chbx_Numbers.setBounds(10, 280, 115, 25);
-		panel.add(chbx_Numbers);
+		chbx_Numbers.setBounds(25, 280, 200, 25);
+		pane_setting.add(chbx_Numbers);
 		
 		chbx_SP = new JCheckBox("Special Caractere");
-		chbx_SP.setBounds(10, 310, 146, 25);
-		panel.add(chbx_SP);
+		chbx_SP.setBounds(25, 310, 200, 25);
+		pane_setting.add(chbx_SP);
 		
 		chbx_Dash = new JCheckBox("Dash         ");
-		chbx_Dash.setBounds(10, 340, 115, 25);
-		panel.add(chbx_Dash);
+		chbx_Dash.setBounds(25, 340, 200, 25);
+		pane_setting.add(chbx_Dash);
 		
 		butt_Generate = new JButton("Generate");
 		butt_Generate.setActionCommand("");
-		butt_Generate.setBounds(20, 375, 120, 25);
+		butt_Generate.setBounds(55, 375, 120, 25);
 		butt_Generate.addActionListener(this);
-		panel.add(butt_Generate);
+		pane_setting.add(butt_Generate);
 		
 		butt_Copy = new JButton("Copy");
-		butt_Copy.setBounds(20, 410, 120, 25);
+		butt_Copy.setBounds(55, 410, 120, 25);
 		butt_Copy.addActionListener(this);
-		panel.add(butt_Copy);
+		pane_setting.add(butt_Copy);
 		
 		butt_Clear = new JButton("Clear");
-		butt_Clear.setBounds(10, 450, 145, 25);
+		butt_Clear.setBounds(40, 450, 150, 25);
 		butt_Clear.addActionListener(this);
-		panel.add(butt_Clear);
+		pane_setting.add(butt_Clear);
 		
 		butt_Modify = new JButton("Modify");
-		butt_Modify.setBounds(10, 490, 145, 25);
+		butt_Modify.setBounds(40, 490, 150, 25);
 		butt_Modify.addActionListener(this);
-		panel.add(butt_Modify);
+		pane_setting.add(butt_Modify);
 		
 		butt_Add = new JButton("Add");
-		butt_Add.setBounds(10, 530, 145, 25);
+		butt_Add.setBounds(40, 530, 150, 25);
 		butt_Add.addActionListener(this);
-		panel.add(butt_Add);
+		pane_setting.add(butt_Add);
 	}
 	
 	

@@ -27,7 +27,13 @@ public class Controler_Connect {
 	}
 	
 	
-	public void loadingData() {	
+	public void loadingData() {
+		
+		// Temporaire 
+		this.data = "/home/adrien/SafeWord Test/data";
+		this.password = "/home/adrien/SafeWord Test/pass";
+		// Temporaire
+		
 		Variable.DATA = ReadFile.read(this.data);
 		String password = ReadFile.read(this.password);
 		try {
