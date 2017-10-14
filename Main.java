@@ -14,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Controler_Connect connect = new Controler_Connect();
+		final Controler_Connect connect = new Controler_Connect();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

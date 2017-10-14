@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 import Controler.Controler_Account;
 
 
-
 @SuppressWarnings("serial")
 public class View_Account extends JFrame implements ActionListener{
 
@@ -56,7 +55,6 @@ public class View_Account extends JFrame implements ActionListener{
 	private JButton butt_Modify;
 	private JButton butt_Add;
 	
-	private int selectedRow;
 	
 	/**
 	 * Launch the application.
@@ -79,24 +77,35 @@ public class View_Account extends JFrame implements ActionListener{
 	public View_Account(Controler_Account controler, Object[][] data) {
 		
 		this.controler = controler;
-		selectedRow = -1;
 		
-        String[] entetes = {"Sites / Software", "Login", "Password"};
-		initialize(entetes, data);
+		initialize(data);
 	}
 
 	
-	public void refresh(Object[][] data) {
+	private void initializeTable(Object[][] data) {
         String[] entetes = {"Sites / Software", "Login", "Password"};
+        tableau = new JTable(data, entetes);
         
-        this.tableau = new JTable(data, entetes);
+        tableau.addMouseListener(new java.awt.event.MouseAdapter() {
+        	
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+            	
+            	System.out.println(tableau.getSelectedRow());
+            	
+            	if(tableau.getSelectedRow() != -1) {
+                	controler.selectedRow(tableau.getSelectedRow());
+            	}
+            	
+            }
+        });		
 	}
 	
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(String[] entetes, Object[][] data) {
+	private void initialize(Object[][] data) {
 		this.setTitle("Safe-Word");
 		this.setResizable(false);
 		this.setBounds(100, 100, 800, 600);
@@ -118,14 +127,7 @@ public class View_Account extends JFrame implements ActionListener{
 		butt_recherche.addActionListener(this);
 		Liste.add(butt_recherche);
 		
-        tableau = new JTable(data, entetes);
-        tableau.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-            	selectedRow = tableau.getSelectedRow();
-            	controler.selectedRow(tableau.getSelectedRow());
-            }
-        });
+		initializeTable(data);
         
 		scrollPane = new JScrollPane(tableau);
 		scrollPane.setBounds(12, 43, 598, 515);
@@ -238,7 +240,7 @@ public class View_Account extends JFrame implements ActionListener{
 			controler.clear();
 		}
 		
-		if (source.equals(this.butt_Modify) && selectedRow != -1){
+		if (source.equals(this.butt_Modify) && tableau.getSelectedRow() != -1){
 			controler.modify(tableau.getSelectedRow(), tfld_Site.getText(), tfld_Login.getText(), tfld_Password.getText());
 		}
 

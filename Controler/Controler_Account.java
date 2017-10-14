@@ -75,8 +75,6 @@ public class Controler_Account {
 		this.data[selectedRow][0] = site;
 		this.data[selectedRow][1] = login;
 		this.data[selectedRow][2] = pass;
-		
-		view.refresh(data);
 	}
 	
 	
@@ -84,11 +82,6 @@ public class Controler_Account {
 		view.getTfld_Site().setText((String) data[row][0]);
 		view.getTfld_Login().setText((String) data[row][1]);
 		view.getTfld_Password().setText((String) data[row][2]);
-	}
-	
-	
-	private void refresh() {
-		
 	}
 
 }
