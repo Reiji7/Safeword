@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 import Controler.Controler_Account;
 
-
+ 
 @SuppressWarnings("serial")
 public class View_Account extends JFrame implements ActionListener{
 
