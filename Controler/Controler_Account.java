@@ -15,9 +15,9 @@ public class Controler_Account {
 	private View_Account view;	
 	private Object[][] data;
 	
-	public Controler_Account() {
-		this.data = ExtractFile.extractData();
-		this.view = new View_Account(this, data);
+	public Controler_Account(String data) {
+		this.data = ExtractFile.extractData(data);
+		this.view = new View_Account(this, this.data);
 		view.run();
 	}
 

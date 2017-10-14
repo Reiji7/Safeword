@@ -34,11 +34,11 @@ public class Controler_Connect {
 		this.password = "/home/adrien/SafeWord Test/pass";
 		// Temporaire
 		
-		Variable.DATA = ReadFile.read(this.data);
+		this.data = ReadFile.read(this.data);
 		String password = ReadFile.read(this.password);
 		try {
 			this.decryption(password);
-			new Controler_Account();
+			new Controler_Account(data);
 			view.dispose();
 		}
 		catch(java.lang.ArrayIndexOutOfBoundsException e) {}
@@ -52,7 +52,7 @@ public class Controler_Connect {
 	 */
 	public void decryption(String key) {
 		extractkey(key);
-		Variable.DATA = Variable.rsa.decrypt(Variable.DATA, Variable.PRIVATEKEY, Variable.PUBLICKEY[1]);
+		this.data = Variable.rsa.decrypt(this.data, Variable.PRIVATEKEY, Variable.PUBLICKEY[1]);
 	}
 
 	

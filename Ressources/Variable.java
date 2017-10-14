@@ -19,8 +19,6 @@ public class Variable {
 	
 	public static Random random = new Random();
 
-	public static String DATA;
-	
 	public static String [] PUBLICKEY = {"", ""};
 
 	public static String PRIVATEKEY = new String();

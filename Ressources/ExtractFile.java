@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class ExtractFile {
 
-	public static Object[][] extractData(){
+	public static Object[][] extractData(String data){
 
-        ArrayList<String[]> liste = extractRow();
+        ArrayList<String[]> liste = extractRow(data);
         Object[][] accountListe = new Object[liste.size()][3];
         int index = 0;
         
@@ -22,14 +22,14 @@ public class ExtractFile {
 	}
 	
 	
-	private static ArrayList<String[]> extractRow() {
+	private static ArrayList<String[]> extractRow(String data) {
         char cara;
         ArrayList<String[]> liste = new ArrayList<>();
         String str = "";
 
-        for(int i = 0; i < Variable.DATA.length(); i++){
+        for(int i = 0; i < data.length(); i++){
 
-        	cara = Variable.DATA.charAt(i);
+        	cara = data.charAt(i);
 
         	if ((int)cara == 10) {
         		liste.add(extractLine(str));
