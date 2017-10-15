@@ -9,14 +9,14 @@ public class Password {
 	 * @param size Size of password
 	 * @param upper Include uppercase
 	 * @param numbers Include numbers
-	 * @param spec Include special carachteres
+	 * @param spec Include special characters
 	 * @param dash Structure by dash
 	 * 
 	 * @return password
 	 */
 	public static String keyGen(int size, boolean upper, boolean numbers, boolean spec, boolean dash) {
 		String password = new String();
-		char tampon = 'a';
+		char tampon = (char)00;
 		
 		for(int i = 0; i < size; i++) {
 
@@ -51,12 +51,22 @@ public class Password {
 					break;
 					
 				}
-				password += tampon;
+
+				if(i >= 1) {
+					if(password.charAt(i-1) != tampon) {
+						password += tampon;
+					}
+					else {
+						i--;
+					}
+				}
+				else {
+					password += tampon;
+				}
+
 			}
 		}
 		
 		return password;
 	}
-
-	
 }
