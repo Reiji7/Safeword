@@ -26,13 +26,13 @@ import Controler.Controler_Account;
 public class View_Account extends JFrame implements ActionListener{
 
 	private Controler_Account controler;
-	private JScrollPane scrollPane;
-	private JTable tableau;
+	private JScrollPane spane_Account;
+	private View_TableModel tableModel;
 	
-	private JPanel Liste;
-	private JPanel pane_setting;
+	private JPanel pane_Account;
+	private JPanel pane_Setting;
 	
-	private JTextField tfld_search;
+	private JTextField tfld_Search;
 	private JTextField tfld_Site;
 	private JTextField tfld_Login;
 	private JTextField tfld_Password;
@@ -48,7 +48,7 @@ public class View_Account extends JFrame implements ActionListener{
 	private JCheckBox chbx_SP;
 	private JCheckBox chbx_Dash;
 	
-	private JButton butt_search;
+	private JButton butt_Search;
 	private JButton butt_Generate;
 	private JButton butt_Copy;
 	private JButton butt_Clear;
@@ -80,23 +80,20 @@ public class View_Account extends JFrame implements ActionListener{
 		
 		initialize(data);
 	}
-
 	
+
 	private void initializeTable(Object[][] data) {
-        String[] entetes = {"Sites / Software", "Login", "Password"};
-        tableau = new JTable(data, entetes);
+        this.tableModel = new View_TableModel(data, new String[]{"Sites / Software", "Login", "Password"});
         
-        tableau.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableModel.getTable().addMouseListener(new java.awt.event.MouseAdapter() {
         	
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-            	
-            	if(tableau.getSelectedRow() != -1) {
-                	controler.selectedRow(tableau.getSelectedRow());
+            	if(tableModel.getTable().getSelectedRow() != -1) {
+                	controler.selectedRow(tableModel.getTable().getSelectedRow());
             	}
-            	
             }
-        });		
+        });
 	}
 	
 	
@@ -110,109 +107,113 @@ public class View_Account extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		
-		Liste = new JPanel();
-		Liste.setBounds(0, 0, 650, 570);
-		this.getContentPane().add(Liste);
-		Liste.setLayout(null);
+		pane_Account = new JPanel();
+		pane_Account.setBounds(0, 0, 650, 570);
+		this.getContentPane().add(pane_Account);
+		pane_Account.setLayout(null);
 		
-		tfld_search = new JTextField();
-		tfld_search.setBounds(10, 20, 500, 25);
-		Liste.add(tfld_search);
-		tfld_search.setColumns(10);
+		tfld_Search = new JTextField();
+		tfld_Search.setBounds(10, 20, 500, 25);
+		pane_Account.add(tfld_Search);
+		tfld_Search.setColumns(10);
 		
-		butt_search = new JButton("Recherche");
-		butt_search.setBounds(520, 20, 120, 25);
-		butt_search.addActionListener(this);
-		Liste.add(butt_search);
+		butt_Search = new JButton("Recherche");
+		butt_Search.setBounds(520, 20, 120, 25);
+		butt_Search.addActionListener(this);
+		pane_Account.add(butt_Search);
 		
 		initializeTable(data);
         
-		scrollPane = new JScrollPane(tableau);
-		scrollPane.setBounds(10, 60, 630, 500);
-		Liste.add(scrollPane);
+		spane_Account = new JScrollPane(tableModel.getTable());
+		spane_Account.setBounds(10, 60, 630, 500);
+		pane_Account.add(spane_Account);
 
-		pane_setting = new JPanel();
-		pane_setting.setBounds(650, 0, 250, 570);
-		this.getContentPane().add(pane_setting);
-		pane_setting.setLayout(null);
+		pane_Setting = new JPanel();
+		pane_Setting.setBounds(650, 0, 250, 570);
+		this.getContentPane().add(pane_Setting);
+		pane_Setting.setLayout(null);
 		
 		lbl_Sites = new JLabel("Sites / Software");
 		lbl_Sites.setBounds(40, 40, 150, 15);
-		pane_setting.add(lbl_Sites);
+		pane_Setting.add(lbl_Sites);
 		
 		tfld_Site = new JTextField();
 		tfld_Site.setBounds(20, 60, 200, 20);
-		pane_setting.add(tfld_Site);
+		pane_Setting.add(tfld_Site);
 		tfld_Site.setColumns(10);
 		
 		lbl_Login = new JLabel("Login");
 		lbl_Login.setBounds(40, 100, 110, 15);
-		pane_setting.add(lbl_Login);
+		pane_Setting.add(lbl_Login);
 		
 		tfld_Login = new JTextField();
 		tfld_Login.setColumns(10);
 		tfld_Login.setBounds(20, 120, 200, 20);
-		pane_setting.add(tfld_Login);
+		pane_Setting.add(tfld_Login);
 		
 		lbl_Password = new JLabel("Password");
 		lbl_Password.setBounds(40, 160, 110, 15);
-		pane_setting.add(lbl_Password);
+		pane_Setting.add(lbl_Password);
 		
 		tfld_Password = new JTextField();
 		tfld_Password.setColumns(10);
 		tfld_Password.setBounds(20, 180, 200, 20);
-		pane_setting.add(tfld_Password);
+		pane_Setting.add(tfld_Password);
 		
 		lbl_Size = new JLabel("Size : ");
 		lbl_Size.setBounds(50, 220, 110, 15);
-		pane_setting.add(lbl_Size);
+		pane_Setting.add(lbl_Size);
 		
 		tfld_Size = new JTextField();
 		tfld_Size.setColumns(2);
 		tfld_Size.setBounds(100, 220, 50, 20);
-		pane_setting.add(tfld_Size);
+		tfld_Size.setText("19");
+		pane_Setting.add(tfld_Size);
 		
 		chbx_Maj = new JCheckBox("Majuscules");
 		chbx_Maj.setBounds(25, 250, 200, 25);
-		pane_setting.add(chbx_Maj);
+		chbx_Maj.setSelected(true);
+		pane_Setting.add(chbx_Maj);
 		
 		chbx_Numbers = new JCheckBox("Chiffres      ");
 		chbx_Numbers.setBounds(25, 280, 200, 25);
-		pane_setting.add(chbx_Numbers);
+		chbx_Numbers.setSelected(true);
+		pane_Setting.add(chbx_Numbers);
 		
 		chbx_SP = new JCheckBox("Special Caractere");
 		chbx_SP.setBounds(25, 310, 200, 25);
-		pane_setting.add(chbx_SP);
+		pane_Setting.add(chbx_SP);
 		
 		chbx_Dash = new JCheckBox("Dash         ");
 		chbx_Dash.setBounds(25, 340, 200, 25);
-		pane_setting.add(chbx_Dash);
+		chbx_Dash.setSelected(true);
+		pane_Setting.add(chbx_Dash);
 		
 		butt_Generate = new JButton("Generate");
 		butt_Generate.setActionCommand("");
 		butt_Generate.setBounds(55, 375, 120, 25);
 		butt_Generate.addActionListener(this);
-		pane_setting.add(butt_Generate);
+		pane_Setting.add(butt_Generate);
 		
 		butt_Copy = new JButton("Copy");
 		butt_Copy.setBounds(55, 410, 120, 25);
 		butt_Copy.addActionListener(this);
-		pane_setting.add(butt_Copy);
+		pane_Setting.add(butt_Copy);
 		
 		butt_Clear = new JButton("Clear");
 		butt_Clear.setBounds(40, 450, 150, 25);
 		butt_Clear.addActionListener(this);
-		pane_setting.add(butt_Clear);
+		pane_Setting.add(butt_Clear);
 		
 		butt_Modify = new JButton("Modify");
 		butt_Modify.setBounds(40, 490, 150, 25);
 		butt_Modify.addActionListener(this);
-		pane_setting.add(butt_Modify);
+		pane_Setting.add(butt_Modify);
 		
 		butt_Add = new JButton("Add");
 		butt_Add.setBounds(40, 530, 150, 25);
 		butt_Add.addActionListener(this);
-		pane_setting.add(butt_Add);
+		pane_Setting.add(butt_Add);
 	}
 	
 	
@@ -238,8 +239,15 @@ public class View_Account extends JFrame implements ActionListener{
 			controler.clear();
 		}
 		
-		if (source.equals(this.butt_Modify) && tableau.getSelectedRow() != -1){
-			controler.modify(tableau.getSelectedRow(), tfld_Site.getText(), tfld_Login.getText(), tfld_Password.getText());
+		// Modify selected line
+		if (source.equals(this.butt_Modify) && tableModel.getTable().getSelectedRow() != -1){
+			controler.modify(tableModel.getTable().getSelectedRow(), tfld_Site.getText(), tfld_Login.getText(), tfld_Password.getText());
+		}
+		
+		// Add new account
+		if (source.equals(this.butt_Add)) {
+			Object[] lineData = {tfld_Site.getText(), tfld_Login.getText(), tfld_Password.getText()};
+			tableModel.addRow(lineData);
 		}
 
 	}
@@ -284,4 +292,8 @@ public class View_Account extends JFrame implements ActionListener{
 		return chbx_Dash;
 	}
 
+	
+	public View_TableModel getTableModel() {
+		return tableModel;
+	}
 }
