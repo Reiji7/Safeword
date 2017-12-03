@@ -6,7 +6,7 @@ public class ExtractFile {
 
 	public static Object[][] extractData(String data){
 
-        ArrayList<String[]> liste = extractRow(data);
+        ArrayList<String[]> liste = extractColumns(data);
         Object[][] accountListe = new Object[liste.size()][3];
         int index = 0;
         
@@ -22,7 +22,7 @@ public class ExtractFile {
 	}
 	
 	
-	private static ArrayList<String[]> extractRow(String data) {
+	private static ArrayList<String[]> extractColumns(String data) {
         char cara;
         ArrayList<String[]> liste = new ArrayList<>();
         String str = "";
